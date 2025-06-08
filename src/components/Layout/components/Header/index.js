@@ -2,15 +2,11 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-
+import Search from '../Search';
 import Button from '~/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCircleXmark,
-    faSpinner,
     faEllipsisVertical,
     faEarthAsia,
     faCircleQuestion,
@@ -20,10 +16,9 @@ import {
     faGear,
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
-import AccountItem from '~/components/AccountItem';
+
 import Menu from '~/components/Popper/Menu';
-import { SearchIcon, UploadIcon } from '~/components/icon';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/components/icon';
 import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
@@ -86,11 +81,6 @@ const MENU_ITEMS = [
     },
 ];
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setSearchResult([]);
-    }, []);
-
     const currenUser = true;
 
     //handle logic
@@ -130,40 +120,25 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <img src={images.logo} alt="Tiktok" />
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Account</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" spellCheck={false} />
-
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                {/* Search */}
+                <Search />
                 <div className={cx('actions')}>
                     {currenUser ? (
                         <>
                             <Tippy delay={[0, 50]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
+                                    <span className={cx('badge')}>12</span>
                                 </button>
                             </Tippy>
                         </>
@@ -176,7 +151,7 @@ function Header() {
                     <Menu items={currenUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currenUser ? (
                             <Image
-                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/0a317cf0c4bb4db54c59c809d8d04b33~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=8954dce8&x-expires=1747962000&x-signature=Tyq891muzrwEl8iWNLdskL6anac%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my"
+                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/0a317cf0c4bb4db54c59c809d8d04b33~tplv-tiktokx-cropcenter:100:100.jpeg?dr=14579&refresh_token=d5c3327d&x-expires=1749290400&x-signature=XuPsDOmaW1XPET7oLZndNLCIdss%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my"
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
                             />
