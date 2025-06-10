@@ -151,7 +151,7 @@ function Header() {
                     <Menu items={currenUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currenUser ? (
                             <Image
-                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/0a317cf0c4bb4db54c59c809d8d04b33~tplv-tiktokx-cropcenter:100:100.jpeg?dr=14579&refresh_token=d5c3327d&x-expires=1749290400&x-signature=XuPsDOmaW1XPET7oLZndNLCIdss%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my"
+                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/0a317cf0c4bb4db54c59c809d8d04b33~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=60ccf9cd&x-expires=1749751200&x-signature=XhFb3vMLVYbomcyn472vz1wzCnk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my"
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
                             />
